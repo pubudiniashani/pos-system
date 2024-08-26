@@ -1,0 +1,105 @@
+
+#nav-bar{
+    padding: 0;
+    top: 0;
+}
+
+
+.header{
+    background-color: #7986CB;
+    z-index: 1000;
+}
+
+#customer-card{
+    margin-left: 20px;
+}
+
+#customer{
+    margin-left: 30px;
+}
+
+
+.custable{
+    position: relative;
+    /*bottom: 120px;*/
+    width: 95vw;
+    top: 90px;
+    /*border: 1px solid black;*/
+    margin-left: 40px;
+    margin-right: 20px;
+
+}
+
+.addCustomer{
+    position: relative;
+    top: 60px;
+    /*right: 300px;*/
+    left: 200px;
+}
+
+.updateCustomer{
+    position: relative;
+    top: 60px;
+    left: 300px;
+}
+
+.deleteCustomer{
+    position: relative;
+    top: 60px;
+    left: 400px;
+}
+
+.resetCustomer{
+    position: relative;
+    top: 60px;
+    left: 500px;
+
+}
+
+@media all and (max-width: 768px) {
+
+    .custable {
+        bottom: 0;
+    }
+
+    .addCustomer {
+        top: 370px;
+        right: 300px;
+    }
+
+    .updateCustomer {
+        top: 370px;
+        right: 200px;
+    }
+
+    .deleteCustomer {
+        top: 370px;
+        right: 100px;
+    }
+
+
+
+
+}
+
+@media all and (max-width: 580px) {
+    .custable {
+        bottom: 0;
+    }
+
+    .addCustomer {
+        top: 370px;
+        right: 300px;
+    }
+
+    .updateCustomer {
+        top: 370px;
+        right: 200px;
+    }
+
+    .deleteCustomer {
+        top: 370px;
+        right: 100px;
+    }
+
+}

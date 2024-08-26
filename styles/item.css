@@ -1,0 +1,75 @@
+.header1{
+    background-color: #7986CB;
+    z-index: 1000;
+}
+/*.searchitem{
+    position: absolute;
+    width: 700px;
+    left: 30px;
+    justify-content: space-between;
+    top: 100px;
+    background-color: #b6ccfe;
+}*/
+
+#item{
+    margin-left: 30px;
+}
+.addItem{
+    position: relative;
+    top: 50px;
+    left: 200px;
+}
+
+.updateItem{
+    position: relative;
+    top: 50px;
+    left: 300px;
+}
+
+.deleteItem{
+    position: relative;
+    top: 50px;
+    left: 400px;
+}
+
+.resetItem{
+    position: relative;
+    top: 50px;
+    left: 500px;
+}
+
+.itemTable{
+    position: absolute;
+    width: 95vw;
+    top: 440px;
+    border: 1px solid black;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+@media all and (max-width: 768px){
+    .searchitem{
+        width: 400px;
+        left: 30px;
+        top: 200px;
+    }
+
+    .add{
+        top: 370px;
+        right: 300px;
+    }
+
+    .update{
+        right: 200px;
+        top: 370px;
+    }
+
+    .delete{
+        right: 100px;
+        top: 370px;
+    }
+
+    .itemTable{
+        bottom: 0;
+    }
+}
