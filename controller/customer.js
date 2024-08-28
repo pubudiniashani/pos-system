@@ -17,10 +17,10 @@ function loadTable(){
             data.forEach(item => {
                 var record = `
                     <tr>
-                        <th scope="row" class="customer-id-value">${item.id}</th>
-                        <td class="customer-name-value">${item.name}</td>
+                        <th scope="row" class="customer-id-value">${item.customerId}</th>
+                        <td class="customer-name-value">${item.customerName}</td>
                          <td class="customer-address-value">${item.address}</td>
-                        <td class="customer-contact-value">${item.contact}</td>
+                        <td class="customer-contact-value">${item.contactNumber}</td>
                     </tr>
                 `;
                 $("#customer-tbl-body").append(record);
@@ -32,7 +32,7 @@ function loadTable(){
     });
 
 }
-    
+
 /*$("#customer-tbl-body").empty();
 
     customers.map((item, index) =>{
@@ -203,6 +203,8 @@ $('#customer-update').on('click', () => {
 
 });
 
+var customerId = $("#customerId").val();
+console.log(customerId);
 
 $("#customer-delete").on('click',()=>{
 
@@ -214,13 +216,13 @@ $("#customer-delete").on('click',()=>{
     loadTable();
     $("#customer-reset").click();*/
 
-    let cusId = $("#custID").val();
-
-
-    if (cusId) {
+    /*let customerId = $("#cusId").val();
+        console.log(customerId);
+*/
+    if (customerId) {
         console.log("im in function")
         $.ajax({
-            url: `http://localhost:8080/customer?customerId=${cusId}`,
+            url: `http://localhost:8080/customer?customerId=${customerId}`,
             type: "DELETE",
             success: function(response) {
                 console.log("Customer deleted:", response);

@@ -9,7 +9,32 @@ var recordindex ;
 
 function loadItemTable(){
 
-    $("#item-tbl-body").empty();
+    $.ajax({
+        url: 'http://localhost:8080/item?all=true',
+        method: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            $("#item-tbl-body").empty();
+            data.forEach(item => {
+                var record = `
+                    <tr>
+                        <th scope="row" class="item-id-value">${item.itemId}</th>
+                        <td class="item-name-value">${item.itemName}</td>
+                        <td class="item-price-value">${item.price}</td>
+                        <td class="item-quantity-value">${item.quantity}</td>
+                    </tr>
+                `;
+                $("#item-tbl-body").append(record);
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error('Failed to load items:', error);
+        }
+    });
+}
+
+
+    /*$("#item-tbl-body").empty();
 
     items.map((item, index) =>{
 
@@ -27,7 +52,7 @@ function loadItemTable(){
     });
 
 
-}
+}*/
 
 $('#item-add').on('click',()=>{
     /*

@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ccaeffd3-7e3a-4777-9e9e-017541acbf05" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/lib/jquery-3.7.1.min.js.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/db.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/CustomerModal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/ItemModal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/OrderModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/customer.js" beforeDir="false" afterPath="$PROJECT_DIR$/controller/customer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/item.js" beforeDir="false" afterPath="$PROJECT_DIR$/controller/item.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/customer.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/customer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/item.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/item.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/order.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/order.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +73,7 @@
       <workItem from="1724734908383" duration="1831000" />
       <workItem from="1724767459206" duration="6143000" />
       <workItem from="1724806620725" duration="1929000" />
+      <workItem from="1724811250147" duration="2499000" />
     </task>
     <servers />
   </component>
