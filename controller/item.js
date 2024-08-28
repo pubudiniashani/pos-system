@@ -60,6 +60,12 @@ $('#item-add').on('click',()=>{
     var priceQuantityPattern = /^[0-9]+$/;
 
 
+    console.log(itemId);
+    console.log(itemName);
+    console.log(price);
+    console.log(quantity);
+
+
     var isValid = true;
 
 
@@ -87,32 +93,36 @@ $('#item-add').on('click',()=>{
     }
 
 
-    if (isValid) {
-        let item = new ItemModal(itemId, itemName, itemPrice, itemQuantity);
-        items.push(item);
-        console.log(items);
-        loadItemTable();
-    }
+    let item = {
+        itemId: itemId,
+        itemName: itemName,
+        price: itemPrice,
+        quantity: itemQuantity
+    };
+
+    console.log(item);
+
+    $.ajax({
+        url: "http://localhost:8080/item",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(item),
+        success: function(response) {
+            console.log(response);
+        },
+        error: function(xhr, status, error) {
+            console.error("Error saving customer:", xhr.responseText);
+            alert("Failed to save customer. Please try again.");
+        }
+    });
+
+    loadItemTable();
+
+
 });
 
 
 
-/*$('#item-update').on('click',()=>{
-
-    var itemId = $('#itemId').val();
-    var itemName = $('#itemName').val();
-    var itemPrice = $('#price').val();
-    var itemQuantity = $('#quantity').val();
-
-    let itemObj = items[recordindex];
-    itemObj.itemId = itemId;
-    itemObj.itemName = itemName;
-    itemObj.price = itemPrice;
-    itemObj.quantity = itemQuantity;
-
-    loadItemTable();
-
-});*/
 
 $('#item-update').on('click', () => {
     var itemId = $('#itemId').val().trim();
@@ -153,7 +163,7 @@ $('#item-update').on('click', () => {
     }
 
 
-    if (isValid) {
+  /*  if (isValid) {
         let itemObj = items[recordindex];
         itemObj.itemId = itemId;
         itemObj.itemName = itemName;
@@ -161,7 +171,32 @@ $('#item-update').on('click', () => {
         itemObj.quantity = itemQuantity;
 
         loadItemTable();
-    }
+    }*/
+
+    let item = {
+        itemId: itemId,
+        itemName: itemName,
+        price: itemPrice,
+        quantity: itemQuantity
+    };
+
+    console.log(item);
+
+    $.ajax({
+        url: "http://localhost:8080/item",
+        type: "PUT",
+        contentType: "application/json",
+        data: JSON.stringify(item),
+        success: function(response) {
+            console.log(response);
+        },
+        error: function(xhr, status, error) {
+            console.error("Error saving customer:", xhr.responseText);
+            alert("Failed to save customer. Please try again.");
+        }
+    });
+
+    loadItemTable();
 });
 
 

@@ -1,13 +1,39 @@
 import CustomerModal from "../model/CustomerModal.js";
 
-/*import {customers} from "../db/db.js";*/
+import {customers} from "../db/db.js";
 
-var customers = [];
+/*var customers = [];*/
 
 var recordIndex;
 
 function loadTable(){
-    $("#customer-tbl-body").empty();
+    $.ajax({
+        url: 'http://localhost:8080/customer?all=true',
+        method: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+            $("#customer-tbl-body").empty();
+            data.forEach(item => {
+                var record = `
+                    <tr>
+                        <th scope="row" class="customer-id-value">${item.id}</th>
+                        <td class="customer-name-value">${item.name}</td>
+                         <td class="customer-address-value">${item.address}</td>
+                        <td class="customer-contact-value">${item.contact}</td>
+                    </tr>
+                `;
+                $("#customer-tbl-body").append(record);
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error('Failed to load customers:', error);
+        }
+    });
+
+}
+    
+/*$("#customer-tbl-body").empty();
 
     customers.map((item, index) =>{
 
@@ -22,9 +48,10 @@ function loadTable(){
 
         $("#customer-tbl-body").append(record);
 
-    });
+    });*/
 
-}
+
+
 
 
 $('#customer-add').on('click',()=>{
@@ -40,7 +67,11 @@ $('#customer-add').on('click',()=>{
     var nameAddressPattern = /^[A-Za-z\s]+$/;
     var contactPattern = /^[0-9]{10}$/;
 
-
+    //me tyenne kalin use krpu ewa JSON ekt
+    console.log(cusId);
+    console.log(cusName);
+    console.log(cusAddress);
+    console.log(cusContact);
     var isValid = true;
 
 
@@ -68,27 +99,18 @@ $('#customer-add').on('click',()=>{
     }
 
 
-    /* if (isValid) {
-         let customer = new CustomerModal(cusId, cusName, cusAddress, cusContact);
-         customers.push(customer);
-         console.log(customers);
-         loadTable();
-         */
-
     let customer = {
-        id: customerId,
-        name: customerName,
-        address: address,
-        contact:cusContact
+        customerId: cusId,
+        customerName: cusName,
+        address: cusAddress,
+        contactNumber: cusContact
     };
     $.ajax({
-        url: "http://localhost:8080/pos-backend/customer",
+        url: "http://localhost:8080/customer",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify(customer),
         success: function(response) {
-            $("#text").text("Successfully added new customer")
-            $("#successModal").modal("show");
             console.log(response);
         },
         error: function(xhr, status, error) {
@@ -103,25 +125,7 @@ $('#customer-add').on('click',()=>{
 
 
 
-/*$('#customer-update').on('click',()=>{
 
-        var cusId = $('#customerId').val();
-        var cusName = $('#name').val();
-        var cusAddress = $('#address').val();
-        var cusContact = $('#contact').val();
-
-        let customerObj = customers[recordIndex];
-        customerObj.id = cusId;
-        customerObj.name = cusName;
-        customerObj.address = cusAddress;
-        customerObj.contact = cusContact;
-
-        console.log("cus1 :" , customerObj);
-        console.log(("cus2 :" , customers[recordIndex]));
-
-        loadTable();
-
-});*/
 
 $('#customer-update').on('click', () => {
     var cusId = $('#customerId').val().trim();
@@ -162,7 +166,7 @@ $('#customer-update').on('click', () => {
     }
 
 
-    if (isValid) {
+   /* if (isValid) {
         let customerObj = customers[recordIndex];
         customerObj.id = cusId;
         customerObj.name = cusName;
@@ -173,15 +177,70 @@ $('#customer-update').on('click', () => {
         console.log("cus2:", customers[recordIndex]);
 
         loadTable();
-    }
+    }*/
+
+    let customer = {
+        customerId: cusId,
+        customerName: cusName,
+        address: cusAddress,
+        contactNumber: cusContact
+    };
+    $.ajax({
+        url: "http://localhost:8080/customer",
+        type: "PUT",
+        contentType: "application/json",
+        data: JSON.stringify(customer),
+        success: function(response) {
+            console.log(response);
+        },
+        error: function(xhr, status, error) {
+            console.error("Error saving customer:", xhr.responseText);
+            alert("Failed to update customer. Please try again.");
+        }
+    });
+
+    loadTable();
+
 });
 
 
 $("#customer-delete").on('click',()=>{
 
-    customers.splice(recordIndex,1)
+    /*var cusId = $('#customerId').val();
+    console.log(cusId)*/
+
+
+    /*customers.splice(recordIndex,1)
     loadTable();
-    $("#customer-reset").click();
+    $("#customer-reset").click();*/
+
+    let cusId = $("#custID").val();
+
+
+    if (cusId) {
+        console.log("im in function")
+        $.ajax({
+            url: `http://localhost:8080/customer?customerId=${cusId}`,
+            type: "DELETE",
+            success: function(response) {
+                console.log("Customer deleted:", response);
+                alert("Customer deleted successfully.");
+
+                // Remove the deleted customer from the customers array
+                //customers.splice(recordIndex, 1);
+
+                // Reload the table and reset the form
+                loadTable();
+                $("#customer-reset").click();
+            },
+            error: function(xhr, status, error) {
+                console.error("Error deleting customer:", xhr.responseText);
+                alert("Failed to delete customer. Please try again.");
+            }
+        });
+    } else {
+        alert("Please select a customer to delete.");
+    }
 });
 
 $('#customer-tbl-body').on('click','tr',function (){
